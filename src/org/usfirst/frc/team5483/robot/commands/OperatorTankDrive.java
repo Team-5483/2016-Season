@@ -15,6 +15,7 @@ public class OperatorTankDrive extends Command {
     }
 
     protected void execute() {
+    	Robot.chassis.tankDrive(1, 1);
     }
 
     protected boolean isFinished() {
