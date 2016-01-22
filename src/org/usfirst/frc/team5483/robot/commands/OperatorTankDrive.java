@@ -2,10 +2,14 @@ package org.usfirst.frc.team5483.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team5483.robot.IO;
 import org.usfirst.frc.team5483.robot.Robot;
 
 public class OperatorTankDrive extends Command {
-
+	
+	private double BUMPER_SPEED = .5;
+	private boolean TANK_DRIVE_MODE = true;
+	
     public OperatorTankDrive() {
         requires(Robot.chassis);
     }
@@ -14,7 +18,20 @@ public class OperatorTankDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.chassis.tankDrive(1, 1);
+    	if (IO.isPrimaryRBButtonPressed())
+        {
+    		Robot.chassis.tankDrive(BUMPER_SPEED, -BUMPER_SPEED);
+        }
+        
+        else if (IO.isPrimaryLBButtonPressed())
+        {
+        	Robot.chassis.tankDrive(-BUMPER_SPEED, BUMPER_SPEED);
+        }
+        
+        else if (TANK_DRIVE_MODE)
+        {
+        	Robot.chassis.tankDrive(IO.getPrimaryControllerLeftStickY(), IO.getPrimaryControllerRightStickY());
+        }
     }
 
     protected boolean isFinished() {
