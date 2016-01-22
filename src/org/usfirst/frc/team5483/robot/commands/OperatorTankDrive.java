@@ -5,25 +5,18 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5483.robot.Robot;
 
-/**
- *
- */
-public class ExampleCommand extends Command {
+public class OperatorTankDrive extends Command {
 
-    public ExampleCommand() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+    public OperatorTankDrive() {
+        requires(Robot.chassis);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
