@@ -8,40 +8,77 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class IO {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
+    private static Joystick xboxController;
 	
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-	
-	private Joystick xboxController;
+	private static double DEADZONE_MAGIC_NUMBER = .15;
+	private static int LEFT_STICK_X = 1, LEFT_STICK_Y = 2, RIGHT_STICK_X = 3, RIGHT_STICK_Y = 5;
 	
 	public IO() {
 		xboxController = new Joystick(RobotMap.xboxController);
 	}
 	
+	private static double deadzone(double d) {
+        if (Math.abs(d) < DEADZONE_MAGIC_NUMBER)
+            return 0;
+        
+        return (d / Math.abs(d)) * ((Math.abs(d) - DEADZONE_MAGIC_NUMBER) / (1 - DEADZONE_MAGIC_NUMBER));
+    }
 	
+	public static double getPrimaryControllerLeftStickX() {
+        return deadzone(-xboxController.getRawAxis(LEFT_STICK_X));
+    }
+
+    public static double getPrimaryControllerLeftStickY() {
+        return deadzone(-xboxController.getRawAxis(LEFT_STICK_Y));
+    }
+
+    public static double getPrimaryControllerRightStickX() {
+        return deadzone(-xboxController.getRawAxis(RIGHT_STICK_X));
+    }
+
+    public static double getPrimaryControllerRightStickY() {
+        return deadzone(-xboxController.getRawAxis(RIGHT_STICK_Y));
+    }
+	
+    public static boolean isPrimaryXButtonPressed() {
+        return xboxController.getRawButton(RobotMap.X_BUTTON);
+    }
+
+    public static boolean isPrimaryYButtonPressed() {
+        return xboxController.getRawButton(RobotMap.Y_BUTTON);
+    }
+
+    public static boolean isPrimaryAButtonPressed() {
+        return xboxController.getRawButton(RobotMap.A_BUTTON);
+    }
+
+    public static boolean isPrimaryBButtonPressed() {
+        return xboxController.getRawButton(RobotMap.B_BUTTON);
+    }
+
+    public static boolean isPrimaryRBButtonPressed() {
+        return xboxController.getRawButton(RobotMap.RB);
+    }
+
+    public static boolean isPrimaryLBButtonPressed() {
+        return xboxController.getRawButton(RobotMap.LB);
+    }
+
+    public static boolean isPrimaryLeftJoyClick() {
+        return xboxController.getRawButton(RobotMap.RIGHT_JOY_CLICK);
+    }
+
+    public static boolean isPrimaryRightJoyClick() {
+        return xboxController.getRawButton(RobotMap.LEFT_JOY_CLICK);
+    }
+
+    public static boolean isPrimarySelectButtonPressed() {
+        return xboxController.getRawButton(RobotMap.SELECT);
+    }
+
+    public static boolean isPrimaryStartButtonPressed() {
+        return xboxController.getRawButton(RobotMap.START);
+    }
 	
 	
 }

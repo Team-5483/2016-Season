@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5483.robot;
 
 import org.usfirst.frc.team5483.robot.commands.Autonomous;
+import org.usfirst.frc.team5483.robot.commands.OperatorTankDrive;
 import org.usfirst.frc.team5483.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -17,6 +18,7 @@ public class Robot extends IterativeRobot {
 	public static final Chassis chassis	 = new Chassis();
 	
 	//Commands
+	public static Command operatorTankDrive;
 	
 	public static IO io;
 
@@ -24,6 +26,8 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
 
     public void robotInit() {
+    	operatorTankDrive = new OperatorTankDrive();
+    	
 		io = new IO();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Autonomous());
@@ -46,19 +50,15 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
-		
     }
 
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+    	Scheduler.getInstance().run();
     }
     
     public void testPeriodic() {
