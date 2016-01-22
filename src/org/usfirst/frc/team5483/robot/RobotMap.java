@@ -10,12 +10,10 @@ public class RobotMap {
     
     //Joysticks
     public static final int xboxController = 1;
-    	public static final int leftStick = 3;
-    	public static final int rightStick = 1;
-    	//public static final int aButton = 1;
-    	//public static final int bButton = 1;
-    //	public static final int xButton = 1;
-    	//public static final int yButton = 1;
+    
+    public static int PRIMARY_JOY = 1, SECONDARY_JOY = 2;
+    public static int A_BUTTON = 1, B_BUTTON = 2, X_BUTTON = 3, Y_BUTTON = 4, 
+                        LB = 5, RB = 6, SELECT = 7, START = 8, LEFT_JOY_CLICK = 9, RIGHT_JOY_CLICK = 10;
     	
     
     
