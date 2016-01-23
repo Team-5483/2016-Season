@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	//Subsystems
-	public static final Chassis chassis	 = new Chassis();
+	public static Chassis chassis;
 	
 	//Commands
 	public static Command operatorTankDrive;
@@ -26,6 +26,8 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
 
     public void robotInit() {
+    	chassis	 = new Chassis();
+    	
     	operatorTankDrive = new OperatorTankDrive();
     	
 		io = new IO();
@@ -55,10 +57,12 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	Scheduler.getInstance().add(operatorTankDrive);
     }
 
     public void teleopPeriodic() {
     	Scheduler.getInstance().run();
+    	//Robot.chassis.tankDrive(IO.getPrimaryControllerLeftStickY(), IO.getPrimaryControllerRightStickY());
     }
     
     public void testPeriodic() {

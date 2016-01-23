@@ -15,6 +15,7 @@ public class OperatorTankDrive extends Command {
     }
 
     protected void initialize() {
+    	
     }
 
     protected void execute() {
@@ -30,7 +31,7 @@ public class OperatorTankDrive extends Command {
         
         else if (TANK_DRIVE_MODE)
         {
-        	Robot.chassis.tankDrive(IO.getPrimaryControllerLeftStickY(), IO.getPrimaryControllerRightStickY());
+        	Robot.chassis.tankDrive(IO.getPrimaryControllerLeftStickY() * BUMPER_SPEED, IO.getPrimaryControllerRightStickY() * BUMPER_SPEED);
         }
     }
 

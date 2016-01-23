@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class IO {
-    private static Joystick xboxController;
+    public static Joystick xboxController;
 	
 	private static double DEADZONE_MAGIC_NUMBER = .15;
-	private static int LEFT_STICK_X = 1, LEFT_STICK_Y = 2, RIGHT_STICK_X = 3, RIGHT_STICK_Y = 5;
+	private static int LEFT_STICK_X = 0, LEFT_STICK_Y = 1,
+			RIGHT_STICK_X = 4 , RIGHT_STICK_Y = 5;
 	
 	public IO() {
 		xboxController = new Joystick(RobotMap.xboxController);
