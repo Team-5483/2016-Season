@@ -8,6 +8,7 @@ import org.usfirst.frc.team5483.robot.Robot;
 public class DefaultDrive extends Command {
 	
 	private double speedMultiplier = .8;
+	private int driveMode = 1;
 	
 	public DefaultDrive() {
         requires(Robot.chassis);
@@ -18,8 +19,12 @@ public class DefaultDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.chassis.drive(IO.getPrimaryControllerLeftStickY() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     	
+    	if(IO.isPrimaryXButtonPressed()) driveMode = 1;
+    	if(IO.isPrimaryYButtonPressed()) driveMode = 2;
+    	
+    	if(driveMode == 1) Robot.chassis.drive(IO.getPrimaryControllerLeftStickY() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	else if(driveMode == 2) Robot.chassis.drive(-IO.getPrimaryControllerLeftStickY() * speedMultiplier, -IO.getPrimaryControllerRightStickY() * speedMultiplier);
     
     }
 
