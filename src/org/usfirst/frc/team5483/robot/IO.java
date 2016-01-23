@@ -11,8 +11,6 @@ public class IO {
     public static Joystick xboxController;
 	
 	private static double DEADZONE_MAGIC_NUMBER = .15;
-	private static int LEFT_STICK_X = 0, LEFT_STICK_Y = 1,
-			RIGHT_STICK_X = 4 , RIGHT_STICK_Y = 5;
 	
 	public IO() {
 		xboxController = new Joystick(RobotMap.xboxController);
@@ -26,19 +24,19 @@ public class IO {
     }
 	
 	public static double getPrimaryControllerLeftStickX() {
-		return deadzone(-xboxController.getRawAxis(LEFT_STICK_X));
+		return deadzone(-xboxController.getRawAxis(RobotMap.LEFT_STICK_X));
     }
 
     public static double getPrimaryControllerLeftStickY() {
-    	return deadzone(-xboxController.getRawAxis(LEFT_STICK_Y));
+    	return deadzone(-xboxController.getRawAxis(RobotMap.LEFT_STICK_Y));
     }
 
     public static double getPrimaryControllerRightStickX() {
-        return deadzone(-xboxController.getRawAxis(RIGHT_STICK_X));
+        return deadzone(-xboxController.getRawAxis(RobotMap.RIGHT_STICK_X));
     }
 
     public static double getPrimaryControllerRightStickY() {
-    	return deadzone(-xboxController.getRawAxis(RIGHT_STICK_Y));
+    	return deadzone(-xboxController.getRawAxis(RobotMap.RIGHT_STICK_Y));
     }
 	
     public static boolean isPrimaryXButtonPressed() {
