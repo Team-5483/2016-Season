@@ -2,7 +2,7 @@
 package org.usfirst.frc.team5483.robot;
 
 import org.usfirst.frc.team5483.robot.commands.Autonomous;
-import org.usfirst.frc.team5483.robot.commands.OperatorTankDrive;
+import org.usfirst.frc.team5483.robot.commands.DefaultDrive;
 import org.usfirst.frc.team5483.robot.subsystems.Chassis;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,17 +28,17 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	chassis	 = new Chassis();
     	
-    	operatorTankDrive = new OperatorTankDrive();
+    	operatorTankDrive = new DefaultDrive();
     	
 		io = new IO();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Autonomous());
-        //chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addObject("My Auto", new Autonomous());
         SmartDashboard.putData("Auto Modes", chooser);
     }
 	
 	public void disabledInit(){
-
+		
     }
 	
 	public void disabledPeriodic() {
@@ -62,7 +62,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
     	Scheduler.getInstance().run();
-    	//Robot.chassis.tankDrive(IO.getPrimaryControllerLeftStickY(), IO.getPrimaryControllerRightStickY());
     }
     
     public void testPeriodic() {

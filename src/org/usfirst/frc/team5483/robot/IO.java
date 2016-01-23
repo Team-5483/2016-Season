@@ -26,11 +26,11 @@ public class IO {
     }
 	
 	public static double getPrimaryControllerLeftStickX() {
-        return deadzone(-xboxController.getRawAxis(LEFT_STICK_X));
+		return deadzone(-xboxController.getRawAxis(LEFT_STICK_X));
     }
 
     public static double getPrimaryControllerLeftStickY() {
-        return deadzone(-xboxController.getRawAxis(LEFT_STICK_Y));
+    	return deadzone(-xboxController.getRawAxis(LEFT_STICK_Y));
     }
 
     public static double getPrimaryControllerRightStickX() {
@@ -38,7 +38,7 @@ public class IO {
     }
 
     public static double getPrimaryControllerRightStickY() {
-        return deadzone(-xboxController.getRawAxis(RIGHT_STICK_Y));
+    	return deadzone(-xboxController.getRawAxis(RIGHT_STICK_Y));
     }
 	
     public static boolean isPrimaryXButtonPressed() {
