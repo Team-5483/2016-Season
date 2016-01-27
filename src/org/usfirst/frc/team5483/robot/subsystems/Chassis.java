@@ -33,9 +33,8 @@ public class Chassis extends Subsystem {
 	public void drive(double left, double right) {
 		double xInput = Math.squareMaintainSign(left);
         double yInput = right;
-		double leftOut = Math.calcLeftDrive(left, right);
-        double rightOut = Math.calcRightDrive(left, right);
-		
+		double leftOut = Math.calcLeftDrive(xInput, yInput);
+        double rightOut = Math.calcRightDrive(xInput, yInput);
 		leftFrontMotor.set(leftOut);
 		leftBackMotor.set(leftOut);
 		rightFrontMotor.set(rightOut);

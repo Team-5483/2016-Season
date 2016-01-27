@@ -8,6 +8,7 @@ import org.usfirst.frc.team5483.robot.Robot;
 public class DefaultDrive extends Command {
 	
 	private double speedMultiplier =1;
+	private int xMultiplier = 1;
 	private boolean driveMode = false;
 	
 	public DefaultDrive() {
@@ -23,14 +24,19 @@ public class DefaultDrive extends Command {
     protected void initialize() {
     	
     }
-
+    int buttLimit = 10,timeElapsed = 0;
+    //heheheee
     protected void execute() {
-    	
-    	if(IO.isPrimaryAButtonPressed()) {
-    		System.out.println("dfg");
-    		driveMode = !driveMode;
+    	if(timeElapsed < buttLimit) {
+    		timeElapsed++;
     	}
-    	Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	
+    	if(IO.isPrimaryAButtonPressed() && timeElapsed >= buttLimit) {
+    		driveMode = !driveMode;
+    		xMultiplier*=-1;
+    		timeElapsed = 0;
+    	}
+    	Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier, -IO.getPrimaryControllerRightStickY() * speedMultiplier);
     	//if(!driveMode) Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     	//else Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     
