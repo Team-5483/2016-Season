@@ -7,12 +7,18 @@ import org.usfirst.frc.team5483.robot.Robot;
 
 public class DefaultDrive extends Command {
 	
-	private double speedMultiplier = .8;
-	private int driveMode = 1;
+	private double speedMultiplier =1;
+	private boolean driveMode = false;
 	
 	public DefaultDrive() {
         requires(Robot.chassis);
     }
+	
+	//LIAM, I LEFT FOR TPM, KEEP LAPTOP SAFE BOI, I CANT MLG NOSCOPE WITHOUT IT
+	//I WILL BE BACK IN 2 HOURS, IF NEEDED USE MY CHARGER CABLE IN MY BAG
+	//GLHF -EVAN (XXX_MLG_NO_SCOOPER)p.s you suck dick
+	
+	//thx m9 mai u live u quikscope another day
 
     protected void initialize() {
     	
@@ -20,11 +26,13 @@ public class DefaultDrive extends Command {
 
     protected void execute() {
     	
-    	if(IO.isPrimaryXButtonPressed()) driveMode = 1;
-    	if(IO.isPrimaryYButtonPressed()) driveMode = 2;
-    	
-    	if(driveMode == 1) Robot.chassis.drive(IO.getPrimaryControllerLeftStickY() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
-    	else if(driveMode == 2) Robot.chassis.drive(-IO.getPrimaryControllerLeftStickY() * speedMultiplier, -IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	if(IO.isPrimaryAButtonPressed()) {
+    		System.out.println("dfg");
+    		driveMode = !driveMode;
+    	}
+    	Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	//if(!driveMode) Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	//else Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     
     }
 

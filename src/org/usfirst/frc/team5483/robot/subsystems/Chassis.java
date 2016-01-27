@@ -31,10 +31,10 @@ public class Chassis extends Subsystem {
     }
 	
 	public void drive(double left, double right) {
-		double xInput = Math.squareMaintainSign(IO.getPrimaryControllerRightStickX());
-        double yInput = IO.getPrimaryControllerLeftStickY();
-		double leftOut = Math.calcLeftDrive(xInput, yInput);
-        double rightOut = Math.calcRightDrive(xInput, yInput);
+		double xInput = Math.squareMaintainSign(left);
+        double yInput = right;
+		double leftOut = Math.calcLeftDrive(left, right);
+        double rightOut = Math.calcRightDrive(left, right);
 		
 		leftFrontMotor.set(leftOut);
 		leftBackMotor.set(leftOut);
