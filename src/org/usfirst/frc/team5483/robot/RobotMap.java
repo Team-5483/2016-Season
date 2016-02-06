@@ -8,8 +8,10 @@ public class RobotMap {
     public static final int rightFrontMotor = 0;
     public static final int rightBackMotor = 3;
     
-  
+    public static final int leftCRMotor = 4;
+    public static final int rightCRMotor = 5;
     
+  
     //Joysticks
     public static final int xboxController = 0;
     

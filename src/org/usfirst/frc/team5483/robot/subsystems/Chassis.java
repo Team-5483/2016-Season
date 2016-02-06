@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5483.robot.subsystems;
 
 import org.usfirst.frc.team5483.robot.IO;
+import org.usfirst.frc.team5483.robot.Robot;
 import org.usfirst.frc.team5483.robot.RobotMap;
 import org.usfirst.frc.team5483.robot.commands.DefaultDrive;
 
@@ -20,7 +21,7 @@ public class Chassis extends Subsystem {
 	public Victor rightBackMotor;
 	
 	protected void initDefaultCommand() {
-		setDefaultCommand(new DefaultDrive());	
+		setDefaultCommand(Robot.defaultDrive);	
 	}
 	
 	public Chassis() {
