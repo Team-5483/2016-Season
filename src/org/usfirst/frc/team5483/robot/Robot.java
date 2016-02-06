@@ -1,5 +1,6 @@
 
 package org.usfirst.frc.team5483.robot;
+import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc.team5483.robot.commands.Autonomous;
 import org.usfirst.frc.team5483.robot.commands.DefaultDrive;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 public class Robot extends IterativeRobot {
 	
@@ -24,10 +26,17 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand = null;
     SendableChooser chooser;
-
-    public void robotInit() {
+    
+	CameraServer server;
+	
+	public void robotInit() {
     	chassis	 = new Chassis();
     	
+    	server = CameraServer.getInstance();
+        server.setQuality(50);
+        server.startAutomaticCapture("cam0");
+        server.startAutomaticCapture("cam1");
+        
     	operatorTankDrive = new DefaultDrive();
     	
 		io = new IO();
@@ -35,6 +44,7 @@ public class Robot extends IterativeRobot {
         chooser.addDefault("Default Auto", new Autonomous());
         chooser.addObject("My Auto", new Autonomous());
         SmartDashboard.putData("Auto Modes", chooser);
+        
     }
 	
 	public void disabledInit(){
@@ -62,6 +72,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
     	Scheduler.getInstance().run();
+    	
     }
     
     public void testPeriodic() {

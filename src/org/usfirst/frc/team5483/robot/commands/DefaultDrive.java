@@ -4,14 +4,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5483.robot.IO;
 import org.usfirst.frc.team5483.robot.Robot;
-
+import org.usfirst.frc.team5483.robot.utils.CommandLogger;
 public class DefaultDrive extends Command {
+	
+	private CommandLogger cmd_log;
 	
 	private double speedMultiplier =1;
 	private int xMultiplier = 1;
 	private boolean driveMode = false;
 	
 	public DefaultDrive() {
+		cmd_log= new CommandLogger();
         requires(Robot.chassis);
     }
 	
@@ -36,7 +39,13 @@ public class DefaultDrive extends Command {
     		xMultiplier*=-1;
     		timeElapsed = 0;
     	}
-    	Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier, -IO.getPrimaryControllerRightStickY() * speedMultiplier);
+    	double x = IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier;
+    	double y =  -IO.getPrimaryControllerRightStickY() * speedMultiplier;
+    	
+    	cmd_log.logCommand(Double.toString(x)+','+Double.toString(y)+"\n");
+    	
+    	Robot.chassis.drive(x,y);
+    	
     	//if(!driveMode) Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     	//else Robot.chassis.drive(IO.getPrimaryControllerLeftStickX() * speedMultiplier, IO.getPrimaryControllerRightStickY() * speedMultiplier);
     
