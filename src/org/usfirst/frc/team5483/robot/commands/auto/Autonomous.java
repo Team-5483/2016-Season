@@ -1,10 +1,11 @@
 
-package org.usfirst.frc.team5483.robot.commands;
+package org.usfirst.frc.team5483.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5483.robot.IO;
 import org.usfirst.frc.team5483.robot.Robot;
+import org.usfirst.frc.team5483.robot.commands.CommandBase;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Autonomous extends Command {
+public class Autonomous extends CommandBase {
 
 	private BufferedReader reader;
 	private File cmdLogFile;
@@ -23,7 +24,7 @@ public class Autonomous extends Command {
 	private  int buttLimit = 10,timeElapsed = 0;
 	
     public Autonomous() {
-        requires(Robot.chassis);
+        requires(chassis);
     }
 
     protected void initialize() {
@@ -53,7 +54,7 @@ public class Autonomous extends Command {
     	double x = Double.valueOf(cmd.substring(0, cmd.indexOf(",")-1));
     	double y = Double.valueOf(cmd.substring(cmd.indexOf(","+1), cmd.length()-1));
     	
-    	Robot.chassis.drive(x,y);
+    	chassis.drive(x,y);
     }
 
     protected boolean isFinished() {
