@@ -18,20 +18,20 @@ public class BCRS extends Subsystem {
 	}
 	
 	public BCRS() {
-        leftMotor = new Victor(RobotMap.leftFrontMotor);
-        rightMotor = new Victor(RobotMap.leftBackMotor);
+        leftMotor = new Victor(RobotMap.leftCRMotor);
+        rightMotor = new Victor(RobotMap.rightCRMotor);
     }
 	
 	public void shoot() {
 		leftMotor.setInverted(false);
-		rightMotor.setInverted(false);
+		rightMotor.setInverted(true);
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}
 	
 	public void suck() {
 		leftMotor.setInverted(true);
-		rightMotor.setInverted(true);
+		rightMotor.setInverted(false);
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}

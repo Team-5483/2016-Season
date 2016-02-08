@@ -11,7 +11,7 @@ public class CommandLogger {
 	private BufferedWriter writer;
 	
 	public CommandLogger() {
-		/*Flashmedia/sda1*/
+		/*Flashmedia/sda1
 		cmdLogFile = new File("media/sda1/cmdlog.txt");
 		try {
 			if (!cmdLogFile.exists()) {
@@ -22,29 +22,29 @@ public class CommandLogger {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	public CommandLogger(File name) {
-		cmdLogFile = name;
+	//	cmdLogFile = name;
 		
 	}
 	public void logCommand(String command) {
-		try {
+		/*try {
 			writer.write(command);
 			writer.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void closeCmdLogger() {
-		try {
+		/*try {
 			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

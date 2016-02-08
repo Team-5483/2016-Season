@@ -32,9 +32,9 @@ public class DefaultDrive extends CommandBase {
     		timeElapsed = 0;
     	}
     	
-    	if(IO.isPrimaryAButtonPressed()) {
+    	if(IO.isPrimaryYButtonPressed()) {
     		bcrs.shoot();
-    	} else if (IO.isPrimaryBButtonPressed()) {
+    	} else if (IO.isPrimaryXButtonPressed()) {
     		bcrs.suck();
     	} else {
     		bcrs.stopMotors();
