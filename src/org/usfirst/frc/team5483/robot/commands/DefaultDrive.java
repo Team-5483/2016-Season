@@ -10,7 +10,7 @@ public class DefaultDrive extends CommandBase {
 	
 	private double speedMultiplier = 1;
 	private int xMultiplier = 1;
-	int buttLimit = 10,timeElapsed = 0;
+	int buttLimit = 10, timeElapsed = 0;
 	
 	public DefaultDrive() {
 		requires(chassis);
