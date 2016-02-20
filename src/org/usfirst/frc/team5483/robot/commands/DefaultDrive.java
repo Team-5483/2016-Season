@@ -36,6 +36,7 @@ public class DefaultDrive extends CommandBase {
     	if(IO.isPrimaryAButtonPressed() && timeElapsed >= buttLimit) {
     		xMultiplier*=-1;
     		timeElapsed = 0;
+    		chassis.switchCameras();
     	}
     	
     	if(IO.isPrimaryXButtonPressed()) {

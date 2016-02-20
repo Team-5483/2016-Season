@@ -23,16 +23,10 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand = null;
     SendableChooser chooser;
     
-	CameraServer server;
-	
 	public void robotInit() {
 		io = new IO();
 		CommandBase.init();
 		defaultDrive = new DefaultDrive();
-		
-    	server = CameraServer.getInstance();
-        server.setQuality(50);
-        server.startAutomaticCapture("cam0");
         
     	chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Autonomous());
