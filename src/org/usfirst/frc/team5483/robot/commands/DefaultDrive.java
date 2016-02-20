@@ -4,11 +4,14 @@ import org.usfirst.frc.team5483.robot.IO;
 import org.usfirst.frc.team5483.robot.Robot;
 import org.usfirst.frc.team5483.robot.utils.CommandLogger;
 
+import edu.wpi.first.wpilibj.Joystick.RumbleType;
+
 public class DefaultDrive extends CommandBase {
 	
 	private CommandLogger cmd_log;
 	
-	private double speedMultiplier = 0.3;
+	private double speedMultiplier = 0.666;
+	//loominati confirmed
 	private int xMultiplier = 1;
 	int buttLimit = 10,timeElapsed = 0;
 	
@@ -35,15 +38,19 @@ public class DefaultDrive extends CommandBase {
     		timeElapsed = 0;
     	}
     	
-    	if(IO.isPrimaryYButtonPressed()) {
+    	if(IO.isPrimaryXButtonPressed()) {
+    		IO.getXboxController().setRumble(RumbleType.kLeftRumble, 100);
+    	}
+    	
+    	if(IO.getXboxController().getTrigger()) {
     		bcrs.shoot();
-    	} else if (IO.isPrimaryXButtonPressed()) {
+    	} else if (!IO.getXboxController().getTrigger()) {
     		bcrs.suck();
     	} else {
     		bcrs.stopMotors();
     	}
     	
-    	double x = IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier;
+    	double x = IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier - angle;
     	double y = -IO.getPrimaryControllerRightStickY() * speedMultiplier;
     	
     	cmd_log.logCommand(Double.toString(x)+','+Double.toString(y)+"\n");
