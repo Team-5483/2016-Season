@@ -8,7 +8,7 @@ public class DefaultDrive extends CommandBase {
 	
 	private CommandLogger cmd_log;
 	
-	private double speedMultiplier = 1;
+	private double speedMultiplier = 0.3;
 	private int xMultiplier = 1;
 	int buttLimit = 10,timeElapsed = 0;
 	
@@ -23,6 +23,9 @@ public class DefaultDrive extends CommandBase {
     }
     
     protected void execute() {
+    	
+    	double angle = chassis.gyro.getAngle();
+    	
     	if(timeElapsed < buttLimit) {
     		timeElapsed++;
     	}

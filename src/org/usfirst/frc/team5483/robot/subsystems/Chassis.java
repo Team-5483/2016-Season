@@ -5,10 +5,14 @@ import org.usfirst.frc.team5483.robot.Robot;
 import org.usfirst.frc.team5483.robot.RobotMap;
 import org.usfirst.frc.team5483.robot.gdlib.Math;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Chassis extends Subsystem {
+	
+	public Gyro gyro;
 	
 	public Victor leftFrontMotor;
 	public Victor leftBackMotor;
@@ -24,6 +28,7 @@ public class Chassis extends Subsystem {
         leftBackMotor = new Victor(RobotMap.leftBackMotor);
         rightFrontMotor = new Victor(RobotMap.rightFrontMotor);
         rightBackMotor = new Victor(RobotMap.rightBackMotor);
+        gyro = new AnalogGyro(1);
     }
 	
 	public void drive(double left, double right) {
