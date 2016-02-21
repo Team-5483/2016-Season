@@ -28,33 +28,19 @@ public class Autonomous extends CommandBase {
     }
 
     protected void initialize() {
-    	cmdLogFile = new File("media/sda1/cmdlog.txt");
-    	
-    	try {
-			toRead = new FileReader(cmdLogFile);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	reader = new BufferedReader(toRead);
+//    	cmdLogFile = new File("media/sda1/cmdlog.txt");
+//    	
+//    	try {
+//			toRead = new FileReader(cmdLogFile);
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	reader = new BufferedReader(toRead);
     }
 
     protected void execute() {
-    	if(timeElapsed < buttLimit) {
-    		timeElapsed++;
-    	}
-    	String cmd="";
-    	try {
-			cmd = reader.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	double x = Double.valueOf(cmd.substring(0, cmd.indexOf(",")-1));
-    	double y = Double.valueOf(cmd.substring(cmd.indexOf(","+1), cmd.length()-1));
-    	
-    	chassis.drive(x,y);
+    	chassis.drive(1.0,-chassis.gyro.getAngle());
     }
 
     protected boolean isFinished() {

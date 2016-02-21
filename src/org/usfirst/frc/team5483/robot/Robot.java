@@ -17,23 +17,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	public static Command defaultDrive;
+	public static Command autonomous;
 	
 	public static IO io;
 
     Command autonomousCommand = null;
     SendableChooser chooser;
     
-	CameraServer server;
-	
 	public void robotInit() {
 		io = new IO();
 		CommandBase.init();
 		defaultDrive = new DefaultDrive();
+        autonomous = new Autonomous();
 		
-    	server = CameraServer.getInstance();
-        server.setQuality(50);
-        server.startAutomaticCapture("cam0");
-        
     	chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Autonomous());
         chooser.addObject("My Auto", new Autonomous());
@@ -43,10 +39,12 @@ public class Robot extends IterativeRobot {
 	
 
 	public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-    	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+//        autonomousCommand = (Command) chooser.getSelected();
+//        
+//    	// schedule the autonomous command (example)
+//        if (autonomousCommand != null) autonomousCommand.start();
+		
+		Scheduler.getInstance().add(autonomous);
     }
 
     public void autonomousPeriodic() {
