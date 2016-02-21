@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5483.robot.commands;
 
 import org.usfirst.frc.team5483.robot.IO;
-import org.usfirst.frc.team5483.robot.Robot;
 import org.usfirst.frc.team5483.robot.utils.CommandLogger;
 
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -10,8 +9,7 @@ public class DefaultDrive extends CommandBase {
 	
 	private CommandLogger cmd_log;
 	
-	private double speedMultiplier = 0.666;
-	//loominati confirmed
+	private double speedMultiplier = 0.333;
 	private int xMultiplier = 1;
 	int buttLimit = 10,timeElapsed = 0;
 	
