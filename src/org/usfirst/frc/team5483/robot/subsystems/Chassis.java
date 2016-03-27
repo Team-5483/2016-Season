@@ -32,11 +32,11 @@ public class Chassis extends Subsystem {
         rightFrontMotor = new Victor(RobotMap.rightFrontMotor);
         rightBackMotor = new Victor(RobotMap.rightBackMotor);
         
+        drive = new RobotDrive(leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor);
+        
         cameras = CameraServer.getInstance();
         cameras.setQuality(50);
         cameras.startAutomaticCapture("cam0");
-        
-        drive = new RobotDrive(leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor);
     }
 	
 	public void switchCameras() {
