@@ -7,6 +7,8 @@ public class DefaultDrive extends CommandBase {
 	private double speedMultiplier = 1;
 	private double xMultiplier = 0.5, yMultiplier = 0.75;
 	
+	private boolean realFront = true;
+	
 	public DefaultDrive() {
 		requires(chassis);
 		requires(bcrs);
@@ -18,6 +20,14 @@ public class DefaultDrive extends CommandBase {
     
     protected void execute() {
     	
+    	if(IO.isPrimaryAButtonPressed()) {
+    		realFront = true;
+    	}
+    	
+        if(IO.isPrimaryBButtonPressed()) {
+        	realFront = false;
+        }
+    	
     	if(IO.isPrimaryRBButtonPressed()) {
     		bcrs.suck();
     	} else if (IO.isPrimaryLBButtonPressed()) {
@@ -26,13 +36,14 @@ public class DefaultDrive extends CommandBase {
     		bcrs.stopMotors();
     	}
     	
-//    	double x = IO.getPrimaryControllerLeftStickX() * speedMultiplier * xMultiplier;
-//    	double y = -IO.getPrimaryControllerRightStickY() * speedMultiplier * yMultiplier;
-    	
     	double y = IO.getPrimaryControllerLeftStickY();
-    	double x = IO.getPrimaryControllerRightStickX();
+		double x = IO.getPrimaryControllerRightStickX();
     	
-    	chassis.drive(y,x);
+    	if(realFront) {
+    		chassis.drive(-y,x);
+    	} else {
+    		chassis.drive(y,x);
+    	}
     }
     
     protected void interrupted() {

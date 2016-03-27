@@ -12,14 +12,12 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Chassis extends Subsystem {
 	
-	public Gyro gyro;
-	
 	private Victor leftFrontMotor;
 	private Victor leftBackMotor;
 	private Victor rightFrontMotor;
 	private Victor rightBackMotor;
 	
-	RobotDrive drive = new RobotDrive(leftBackMotor, leftBackMotor, leftBackMotor, leftBackMotor);
+	RobotDrive drive;
 	
 	private CameraServer cameras;
 	private boolean frontCameraActive = true;
@@ -33,11 +31,12 @@ public class Chassis extends Subsystem {
         leftBackMotor = new Victor(RobotMap.leftBackMotor);
         rightFrontMotor = new Victor(RobotMap.rightFrontMotor);
         rightBackMotor = new Victor(RobotMap.rightBackMotor);
-        gyro = new AnalogGyro(1);
         
         cameras = CameraServer.getInstance();
         cameras.setQuality(50);
         cameras.startAutomaticCapture("cam0");
+        
+        drive = new RobotDrive(leftFrontMotor, leftBackMotor, rightFrontMotor, rightBackMotor);
     }
 	
 	public void switchCameras() {
