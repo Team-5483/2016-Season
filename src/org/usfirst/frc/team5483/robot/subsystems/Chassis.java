@@ -1,12 +1,11 @@
-
 package org.usfirst.frc.team5483.robot.subsystems;
 
 import org.usfirst.frc.team5483.robot.Robot;
 import org.usfirst.frc.team5483.robot.RobotMap;
-import org.usfirst.frc.team5483.robot.gdlib.Math;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -19,6 +18,8 @@ public class Chassis extends Subsystem {
 	private Victor leftBackMotor;
 	private Victor rightFrontMotor;
 	private Victor rightBackMotor;
+	
+	RobotDrive drive = new RobotDrive(leftBackMotor, leftBackMotor, leftBackMotor, leftBackMotor);
 	
 	private CameraServer cameras;
 	private boolean frontCameraActive = true;
@@ -52,14 +53,7 @@ public class Chassis extends Subsystem {
 	}
 	
 	public void drive(double left, double right) {
-		double xInput = Math.squareMaintainSign(left);
-        double yInput = right;
-		double leftOut = Math.calcLeftDrive(xInput, yInput);
-        double rightOut = Math.calcRightDrive(xInput, yInput);
-		leftFrontMotor.set(leftOut);
-		leftBackMotor.set(leftOut);
-		rightFrontMotor.set(rightOut);
-		rightBackMotor.set(rightOut);
+		drive.arcadeDrive(left, right);
 	}
     
 }
