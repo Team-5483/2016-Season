@@ -4,10 +4,17 @@ import org.usfirst.frc.team5483.robot.IO;
 
 public class DefaultDrive extends CommandBase {
 	
-	private double speedMultiplier = 1;
-	private double xMultiplier = 0.5, yMultiplier = 0.75;
 	
 	private boolean realFront = true;
+	
+	//Real Front Speed Modifiers
+	private double speedModifierRealFrontForward = 1; 
+	private double speedModifierRealFrontTurn = 1;
+	
+	//Fake Front Speed Modifiers
+	private double speedModifierFakeFrontForward = 0.5; 
+	private double speedModifierFakeFrontTurn = 0.5;
+			
 	
 	public DefaultDrive() {
 		requires(chassis);
@@ -28,9 +35,9 @@ public class DefaultDrive extends CommandBase {
         	realFront = false;
         }
     	
-    	if(IO.isPrimaryRBButtonPressed()) {
+    	if(IO.isPrimaryLBButtonPressed()) {
     		bcrs.suck();
-    	} else if (IO.isPrimaryLBButtonPressed()) {
+    	} else if (IO.isPrimaryRBButtonPressed()) {
     		bcrs.shoot();
     	} else {
     		bcrs.stopMotors();
@@ -40,9 +47,9 @@ public class DefaultDrive extends CommandBase {
 		double x = IO.getPrimaryControllerRightStickX();
     	
     	if(realFront) {
-    		chassis.drive(-y,x);
+    		chassis.drive(-y * speedModifierRealFrontTurn, x * speedModifierRealFrontForward);
     	} else {
-    		chassis.drive(y,x);
+    		chassis.drive(y * speedModifierFakeFrontTurn, x * speedModifierFakeFrontForward);
     	}
     }
     
