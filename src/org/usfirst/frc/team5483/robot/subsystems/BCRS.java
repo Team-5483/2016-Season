@@ -23,15 +23,15 @@ public class BCRS extends Subsystem {
     }
 	
 	public void shoot() {
-		leftMotor.setInverted(false);
-		rightMotor.setInverted(true);
+		leftMotor.setInverted(true);
+		rightMotor.setInverted(false);
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}
 	
 	public void suck() {
-		leftMotor.setInverted(true);
-		rightMotor.setInverted(false);
+		leftMotor.setInverted(false);
+		rightMotor.setInverted(true);
 		leftMotor.set(1);
 		rightMotor.set(1);
 	}

@@ -2,50 +2,60 @@
 package org.usfirst.frc.team5483.robot;
 import org.usfirst.frc.team5483.robot.commands.CommandBase;
 import org.usfirst.frc.team5483.robot.commands.DefaultDrive;
-import org.usfirst.frc.team5483.robot.commands.auto.Autonomous;
+import org.usfirst.frc.team5483.robot.commands.auto.GyroCrossAuto;
 import org.usfirst.frc.team5483.robot.subsystems.BCRS;
 import org.usfirst.frc.team5483.robot.subsystems.Chassis;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	
+	//AUTONOMOUS COMMANDS
+	public static Command gyroCrossAuto;
+	
+	//TELEOP COMMANDS
 	public static Command defaultDrive;
-	public static Command autonomous;
 	
 	public static IO io;
-
-    Command autonomousCommand = null;
-    SendableChooser chooser;
-    
+	
+	public int countAuto = 0;
+	
 	public void robotInit() {
 		io = new IO();
 		CommandBase.init();
-		defaultDrive = new DefaultDrive();
-        autonomous = new Autonomous();
 		
-    	chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new Autonomous());
-        chooser.addObject("My Auto", new Autonomous());
-        SmartDashboard.putData("Auto Modes", chooser);
+		//TELEOP COMMANDS INIT
+		defaultDrive = new DefaultDrive();
+		
+		//AUTO COMMANDS INIT
+		//gyroCrossAuto = new GyroCrossAuto();
         
     }
 	
-
+	//AUTOMOUS
 	public void autonomousInit() {
-        Scheduler.getInstance().add(autonomous);
+		countAuto = 0;
     }
-
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+	
+	public void autonomousPeriodic() {
+//	    if(countAuto++ <= 100) {
+//	    	CommandBase.chassis.drive(-0.7, 0.2);
+//	    } else {
+//	    	CommandBase.chassis.drive(0.0, 0.0);
+//	    }	
+//	    
+//	    if(countAuto > 10000){ countAuto = 0;}
     }
-
+    	
+    //TELEOP
     public void teleopInit() {
     	Scheduler.getInstance().add(defaultDrive);
     }
@@ -55,7 +65,9 @@ public class Robot extends IterativeRobot {
     	
     }
     
+    //DISABLE
     public void disabledInit(){
+    	
     	
     }
     
@@ -63,6 +75,7 @@ public class Robot extends IterativeRobot {
     	Scheduler.getInstance().run();
     }
     
+    //TEST
     public void testPeriodic() {
         LiveWindow.run();
     }
